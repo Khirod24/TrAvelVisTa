@@ -5,8 +5,6 @@ const Listing= require("../models/listing.js");
 const passport = require("passport");
 const {isLoggedIn, isOwner, validateListing} = require("../middleware.js");
 
-
-
 //INDEX ROUTE
 router.get("/",async (req,res)=>{
     const allListings = await Listing.find({});
@@ -21,7 +19,7 @@ router.get("/new",isLoggedIn,(req,res)=>{
 //SHOW ROUTE
 router.get("/:id",wrapAsync(async(req,res)=>{
     const {id}= req.params;
-    const listing= await Listing.findById(id).populate("reviews").populate("owner");
+    const listing= await Listing.findById(id).populate({path:"reviews",populate:{path:"author"},}).populate("owner");
     if(!listing){
         req.flash("error","Requested Listing Does Not Exist!");
         res.redirect("/listings");

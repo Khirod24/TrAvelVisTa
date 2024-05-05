@@ -33,7 +33,8 @@ router.post("/login", saveRedirectUrl ,passport.authenticate("local", {
     failureFlash:true,
 }) ,async(req,res)=>{
     req.flash("success","Welcome to TrAvelVisTa");
-    res.redirect(res.locals.redirectUrl);
+    if(res.locals.redirectUrl){res.redirect(res.locals.redirectUrl);}
+    else{res.redirect("/listings");}
 })
 
 router.get("/logout", async(req,res,next)=>{
