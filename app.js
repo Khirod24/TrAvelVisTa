@@ -34,9 +34,9 @@ async function main(){
     await mongoose.connect(MONGO_URL);
 }
 
-app.get("/",(req,res)=>{
-    res.send("Welcome to homepage");
-})
+// app.get("/",(req,res)=>{
+//     res.send("Welcome to homepage");
+// })
 
 const sessionOptions ={
     secret:"mysupersecretcode",
@@ -63,15 +63,6 @@ app.use((req,res,next)=>{
     res.locals.currUser = req.user;
     next();
 })
-
-// app.get("/demouser", async(req,res)=>{
-//     const fakeUser = await User({
-//         email:"khirod4300dav@gmail.com",
-//         username:"goodboi123"
-//     })
-//     let registeredUser = await User.register(fakeUser,"helloworld");
-//     res.send(registeredUser);
-// })
 
 app.use("/listings",listingRouter);
 

@@ -3,7 +3,7 @@
     <div class="col-8 offset-2">
     <h3 class="mt-2"><b> <%= listing.title %></b></h3>
     <div class="card">
-        <img src="<%=listing.image%>" class="card-img-top show-img" alt="listing_image">
+        <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing_image">
         <div class="card-body">
             <p class="card-text">Owned By: <i><%= listing.owner.username %></i></p>
             <p class="card-text"><%= listing.description %> </p>
